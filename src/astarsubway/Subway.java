@@ -12,6 +12,11 @@ import java.util.ArrayList;
  * @author HypnoS
  */
 public class Subway {
-    public ArrayList Stations;
+    public ArrayList stations;
+    public int[][] matrix;
+    public Subway (ArrayList stations, int[][] matrix){
+        this.stations = stations;
+        this.matrix = matrix;
+    }
     
 }
