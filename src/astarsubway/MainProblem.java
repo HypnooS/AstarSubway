@@ -5,13 +5,17 @@
  */
 package astarsubway;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author HypnoS
  */
-public class Subway {
-    public ArrayList Stations;
+public class MainProblem {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
     
 }
