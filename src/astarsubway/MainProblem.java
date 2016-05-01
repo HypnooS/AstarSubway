@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author HypnoS
+ * @author Caio Serrano
  */
 public class MainProblem {
        
