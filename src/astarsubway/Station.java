@@ -10,11 +10,15 @@ package astarsubway;
  * @author HypnoS
  */
 public class Station {
+    private int numId;
     private int time;
     private int timeWait;
-    public Station(int time, int timeWait){
+    
+    public Station(int numId, int time, int timeWait){
         this.time = time;
         this.timeWait = timeWait;
+        this.numId = numId;
+        
     }
 
     /**
@@ -44,5 +48,20 @@ public class Station {
     public void setTimeWait(int timeWait) {
         this.timeWait = timeWait;
     }
+
+    /**
+     * @return the numId
+     */
+    public int getNumId() {
+        return numId;
+    }
+
+    /**
+     * @param numId the numId to set
+     */
+    public void setNumId(int numId) {
+        this.numId = numId;
+    }
+
     
 }
