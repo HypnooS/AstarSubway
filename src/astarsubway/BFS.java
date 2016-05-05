@@ -17,12 +17,18 @@ public class BFS {
     public int[][] matrix;
     public int[] timeHeristic;
     public int nodeTime;
+    public String path = "Path: ";
     public boolean alreadyPassHere=false;
     public int firstStation=0;
     public int stationGoal=0;
     public int currentStation=0;
     public int currentHeristic=999999;
     public int currentPath=9999999;
+
+    @Override
+    public String toString() {
+        return "("+currentStation+")";
+    }
     
     
     public BFS(ArrayList<Station> stations, int[][] matrix, int nodeStart, int nodeGoal){
@@ -81,17 +87,25 @@ public class BFS {
         this.currentStation = currentPath;
         System.out.println("Current Station is "+ currentStation);
         nodeCounter(currentStation);
+        
     }
     
     public void search(){
         nodeCounter(currentStation);
+        path = path.concat(concatPath(currentStation));
         while(alreadyPassHere==false){
             bestNodeAround();
+            path = path.concat(concatPath(currentStation));
         }
+        path = path.concat("|");
     }
     
     public void nodeCounter(int currentStation){
         nodeTime = stations.get(currentStation).getTime() + nodeTime; //+ stations.get(currentStation).getTimeWait() 
+    }
+    
+    public String concatPath(int currentStation){
+        return "["+currentStation+"]->";
     }
     
     //trying to use object for get the data.

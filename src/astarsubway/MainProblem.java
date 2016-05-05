@@ -20,7 +20,7 @@ public class MainProblem {
     public static void main(String[] args) {
         //testing stations//
         ArrayList<Station> stations = new ArrayList<>();
-        //First test with 4 stations
+        //First test with 7 stations
         stations.add(new Station(0, 2, 2)); //Id 0 with waiting time plus time to arrive (2+2)
         stations.add(new Station(1, 2, 2)); //
         stations.add(new Station(2, 2, 3)); //
@@ -48,6 +48,7 @@ public class MainProblem {
         BFS bfs = new BFS(stations, matrixStations1, 0, 5);
         bfs.search();
         System.out.println("Best Time: "+bfs.nodeTime);
+        System.out.println(bfs.path);
         
         
         
