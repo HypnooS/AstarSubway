@@ -28,7 +28,7 @@ public class MainProblem {
         stations.add(new Station(4, 2, 2));
         stations.add(new Station(5, 2, 2));
         stations.add(new Station(6, 2, 2));
-        
+        stations.add(new Station(7, 2, 2));
       /*  Station[][] matrix ={
             {null,stations.get(0), null, null},
             {stations.get(1), null, stations.get(1), stations.get(1)},
@@ -45,10 +45,21 @@ public class MainProblem {
             {-1,-1,-1,-1, 1,-1,-1}
         };
         
-        BFS bfs = new BFS(stations, matrixStations1, 0, 5);
-        bfs.search();
-        System.out.println("Best Time: "+bfs.nodeTime);
-        System.out.println(bfs.path);
+        int[][] matrixStations2 = {
+            {-1,12,-1,-1,-1,-1,-1,-1},
+            {12,-1,14,10,-1,-1,-1,-1},
+            {-1,14,-1,-1,-1,-1,-1,-1},
+            {-1,10,-1,-1, 8,-1,-1,-1},
+            {-1,-1,-1, 8,-1, 4, 7,-1},
+            {-1,-1,-1,-1, 4,-1,-1, 0},
+            {-1,-1,-1,-1, 7,-1,-1,-1},
+            {-1,-1,-1,-1,-1, 0,-1,-1}
+        };
+        BFS bfs = new BFS(stations, matrixStations2, 0, 7);
+        Thread bfsThread = new Thread(bfs);
+        bfsThread.start();
+        //System.out.println("Best Time: "+bfs.nodeTime);
+        //System.out.println(bfs.path);
         
         
         

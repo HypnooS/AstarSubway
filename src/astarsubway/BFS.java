@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author HypnoS
  */
-public class BFS {   
+public class BFS implements Runnable{   
     public ArrayList<Station> stations;
     public CurrentStation currentStations;
     public int[][] matrix;
@@ -19,11 +19,10 @@ public class BFS {
     public int nodeTime;
     public String path = "Path: ";
     public boolean alreadyPassHere=false;
-    public int firstStation=0;
     public int stationGoal=0;
     public int currentStation=0;
     public int currentHeristic=999999;
-    public int currentPath=9999999;
+    public int intermidiateCurrentStation=9999999;
 
     @Override
     public String toString() {
@@ -34,7 +33,6 @@ public class BFS {
     public BFS(ArrayList<Station> stations, int[][] matrix, int nodeStart, int nodeGoal){
         this.stations = stations;
         this.matrix = matrix;
-        this.firstStation = nodeStart;
         this.currentStation = nodeStart;
         this.stationGoal = nodeGoal;
         currentStations = new CurrentStation();
@@ -43,7 +41,7 @@ public class BFS {
         currentStations.setCurrentHeristic(99999);
         
     }
-    
+
     public int getHeuristic(int numStation){
         return timeHeristic[numStation];
     }
@@ -77,14 +75,14 @@ public class BFS {
             System.out.println("Station: "+currentStation+ "|"+ i +" H: "+matrix[currentStation][i]);
             if(matrix[currentStation][i] < currentHeristic && matrix[currentStation][i] != -1){
                 System.out.println("New best Station: "+i+" H: "+matrix[currentStation][i]);
-                this.currentPath=i;
+                this.intermidiateCurrentStation=i;
                 this.currentHeristic = matrix[currentStation][i];
             }
             if(matrix[i][currentStation] == 0){
                 this.alreadyPassHere=true;
             }
         }
-        this.currentStation = currentPath;
+        this.currentStation = intermidiateCurrentStation;
         System.out.println("Current Station is "+ currentStation);
         nodeCounter(currentStation);
         
@@ -122,6 +120,13 @@ public class BFS {
         }
         currentStations.setCurrentStation(currentStations.getCurrentPath());
         System.out.println("Current Station is "+ currentStation);
+    }
+
+    @Override
+    public void run() {
+        search();
+        System.out.println("Best Time Found: " + nodeTime);
+        System.out.println("Best Path Found: " + path);
     }
     
     
