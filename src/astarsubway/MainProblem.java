@@ -66,31 +66,10 @@ public class MainProblem {
         //bfsThread.start();
         //System.out.println("Best Time: "+bfs.nodeTime);
         //System.out.println(bfs.path);
-        Astar astar = new Astar(stations, matrixStations3, 0, 3);
+        Astar astar = new Astar(stations, matrixStations2, 0, 7);
         
-        astar.addNodeOnClosedList(-1,0,0);
-        astar.addNodesToOpenList(0);
-        astar.removeNodeFromOpenList(1);
-        
-        System.out.println("Going to "+astar.returnBestNodeOpenList());
-        System.out.println("Best Station: "+astar.returnBestNodeOpenList()+" Current Station "+ astar.currentStation);
-        astar.removeNodeFromOpenList(astar.returnBestNodeOpenList());
-        astar.sumCostPath(astar.returnBestNodeOpenList());
-        
-        astar.addNodesToOpenList(astar.returnBestNodeOpenList());
-        System.out.println("Going to "+astar.returnBestNodeOpenList());
-        System.out.println("Best Station: "+astar.returnBestNodeOpenList()+" Current Station "+ astar.currentStation);
-        astar.removeNodeFromOpenList(astar.returnBestNodeOpenList());
-        astar.sumCostPath(astar.returnBestNodeOpenList());
-                
-        astar.addNodesToOpenList(astar.returnBestNodeOpenList());
-        System.out.println("Going to "+astar.returnBestNodeOpenList());
-        System.out.println("Best Station: "+astar.returnBestNodeOpenList()+" Current Station "+ astar.currentStation);
-        astar.removeNodeFromOpenList(astar.returnBestNodeOpenList());
-        astar.sumCostPath(astar.returnBestNodeOpenList());
-        
-        System.out.println("CP Size: "+ astar.closedList.size());
-        System.out.println("OP Size: "+ astar.openList.size());
+        astar.search();
+     
         
         // TODO code application logic here
         
