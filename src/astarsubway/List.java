@@ -12,6 +12,7 @@ package astarsubway;
 public class List {
     private int numberStation;
     private int heuristic;
+    private int fatherStation;
 
     public List(int numberStation, int heuristic) {
         this.numberStation = numberStation;
@@ -44,5 +45,19 @@ public class List {
      */
     public void setHeuristic(int heuristic) {
         this.heuristic = heuristic;
+    }
+
+    /**
+     * @return the fatherStation
+     */
+    public int getFatherStation() {
+        return fatherStation;
+    }
+
+    /**
+     * @param fatherStation the fatherStation to set
+     */
+    public void setFatherStation(int fatherStation) {
+        this.fatherStation = fatherStation;
     }
 }
