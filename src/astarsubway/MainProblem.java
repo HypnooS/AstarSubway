@@ -23,7 +23,7 @@ public class MainProblem {
         //First test with 7 stations
         stations.add(new Station(0, 2, 2)); //Id 0 with waiting time plus time to arrive (2+2)
         stations.add(new Station(1, 2, 2)); //
-        stations.add(new Station(2, 2, 3)); //
+        stations.add(new Station(2, 2, 2)); //
         stations.add(new Station(3, 2, 2));
         stations.add(new Station(4, 2, 2));
         stations.add(new Station(5, 2, 2));
@@ -55,17 +55,39 @@ public class MainProblem {
             {-1,-1,-1,-1, 7,-1,-1,-1},
             {-1,-1,-1,-1,-1, 0,-1,-1}
         };
-        BFS bfs = new BFS(stations, matrixStations2, 0, 7);
-        Thread bfsThread = new Thread(bfs);
-        bfsThread.start();
+        int[][] matrixStations3 = {
+            {-1,10,-1,-1},
+            {-1,-1, 5,-1},
+            {-1,-1,-1, 0},
+            {-1,-1,-1,-1}
+        };
+        //BFS bfs = new BFS(stations, matrixStations2, 0, 7);
+        //Thread bfsThread = new Thread(bfs);
+        //bfsThread.start();
         //System.out.println("Best Time: "+bfs.nodeTime);
         //System.out.println(bfs.path);
+        Astar astar = new Astar(stations, matrixStations3, 0, 3);
         
+        astar.addNodesToOpenList(0);
+        astar.removeNodeFromOpenList(0);
+        System.out.println("Going to "+astar.returnBestNodeOpenList());
+        astar.removeNodeFromOpenList(astar.returnBestNodeOpenList());
+        astar.sumCostPath(astar.returnBestNodeOpenList());
         
+        astar.addNodesToOpenList(astar.returnBestNodeOpenList());
+        System.out.println("Going to "+astar.returnBestNodeOpenList());
+        astar.removeNodeFromOpenList(astar.returnBestNodeOpenList());
+        astar.sumCostPath(astar.returnBestNodeOpenList());
+                
+        astar.addNodesToOpenList(astar.returnBestNodeOpenList());
+        System.out.println("Going to "+astar.returnBestNodeOpenList());
+        astar.removeNodeFromOpenList(astar.returnBestNodeOpenList());
+        astar.sumCostPath(astar.returnBestNodeOpenList());
         
-
-        
-        
+        astar.addNodesToOpenList(astar.returnBestNodeOpenList());
+        System.out.println("Going to "+astar.returnBestNodeOpenList());
+        astar.removeNodeFromOpenList(astar.returnBestNodeOpenList());
+        astar.sumCostPath(astar.returnBestNodeOpenList());
         
         
         // TODO code application logic here
