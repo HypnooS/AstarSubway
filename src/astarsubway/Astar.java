@@ -54,13 +54,14 @@ public class Astar {
         }
         return currentStation;
     }
-    public void addNodesToOpenList(int currentStation){
-        System.out.println("Current Station: "+ currentStation);
+    public void addNodesToOpenList(int childStation){
+        System.out.println("Current Station: "+ childStation);
+        
         for(int i=0; i < matrix.length; i++){
-            System.out.println("Station: "+currentStation+"|"+ i );
-            if(matrix[currentStation][i] != -1 && thisNodeExistInOpenList(i) == false && thisNodeExistInClosedList(i) == false){
-                System.out.println("Station: "+currentStation+"|"+ i +" H: "+ matrix[currentStation][i] + " + G:" + totalCostPath);
-                addNodeOnOpenList(currentStation,i,( matrix[currentStation][i] + totalCostPath ));
+            System.out.println("Station: "+childStation+"|"+ i );
+            if(matrix[childStation][i] != -1 && thisNodeExistInOpenList(i) == false && thisNodeExistInClosedList(i) == false){
+                System.out.println("Station: "+childStation+"|"+ i +" H: "+ matrix[childStation][i] + " + G:" + totalCostPath);
+                addNodeOnOpenList(childStation,i,( matrix[childStation][i] + totalCostPath ));
             }
         }
     }
@@ -89,7 +90,7 @@ public class Astar {
         System.out.println("Removing the nodeStation from the open list: "+ nextStation);
         for(int i =0; i < openList.size(); i++){
             if(openList.get(i).getNumberStation() == nextStation){
-                closedList.add(openList.get(i));
+                addNodeOnClosedList(openList.get(i).getFatherStation() ,openList.get(i).getNumberStation(),openList.get(i).getHeuristic());
                 openList.remove(i);
             }            
         }
