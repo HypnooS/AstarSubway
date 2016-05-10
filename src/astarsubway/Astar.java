@@ -23,7 +23,6 @@ public class Astar {
     public int stationGoal=0;
     public int currentStation=0;
     public int currentHeristic=999999;
-    public int intermidiateCurrentStation=9999999;
     public int totalCostPath=0;
 
     public Astar(ArrayList<Station> stations, int[][] matrix, int startStation, int stationGoal) {
@@ -35,19 +34,19 @@ public class Astar {
         closedList = new ArrayList<>();
     }
     
-    public void addNodeOnClosedList(int numberStation, int heuristic){
+    public void addNodeOnClosedList(int fatherStation ,int numberStation, int heuristic){
         System.out.println("Adding node on Closed List: " + numberStation);
-        closedList.add(new List(numberStation, heuristic));
+        closedList.add(new List(fatherStation, numberStation, heuristic));
     }
     
-    public void addNodeOnOpenList(int numberStation, int heuristic){
+    public void addNodeOnOpenList(int fatherStation,int numberStation, int heuristic){
         System.out.println("Adding node on Opened List: " + numberStation);
-        openList.add(new List(numberStation, heuristic));
+        openList.add(new List(fatherStation, numberStation, heuristic));
     }
  
     public int returnBestNodeOpenList(){
         for(int i=0; i < openList.size(); i++){
-            if(openList.get(i).getHeuristic() < currentHeristic){
+            if(this.currentHeristic > openList.get(i).getHeuristic()){
                 this.currentStation = openList.get(i).getNumberStation();
                 this.currentHeristic = openList.get(i).getHeuristic();
                 return openList.get(i).getNumberStation();
@@ -59,9 +58,9 @@ public class Astar {
         System.out.println("Current Station: "+ currentStation);
         for(int i=0; i < matrix.length; i++){
             System.out.println("Station: "+currentStation+"|"+ i );
-            if(matrix[currentStation][i] != -1 && thisNodeExistInOpenList(i) == false){
+            if(matrix[currentStation][i] != -1 && thisNodeExistInOpenList(i) == false && thisNodeExistInClosedList(i) == false){
                 System.out.println("Station: "+currentStation+"|"+ i +" H: "+ matrix[currentStation][i] + " + G:" + totalCostPath);
-                addNodeOnOpenList(i,( matrix[currentStation][i] + totalCostPath ));
+                addNodeOnOpenList(currentStation,i,( matrix[currentStation][i] + totalCostPath ));
             }
         }
     }
@@ -69,6 +68,17 @@ public class Astar {
     public boolean thisNodeExistInOpenList(int station){
         for(int i =0; i < openList.size(); i++){
             if(openList.get(i).getNumberStation() == station){
+                System.out.println("Exist in openList: "+ openList.get(i).getNumberStation());
+                return true;
+            }            
+        }
+        return false;
+    }
+    
+    public boolean thisNodeExistInClosedList(int station){
+        for(int i =0; i < closedList.size(); i++){
+            if(closedList.get(i).getNumberStation() == station){
+                System.out.println("Exist in closedList: "+ closedList.get(i).getNumberStation());
                 return true;
             }            
         }

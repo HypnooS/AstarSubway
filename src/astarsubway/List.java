@@ -14,9 +14,10 @@ public class List {
     private int heuristic;
     private int fatherStation;
 
-    public List(int numberStation, int heuristic) {
+    public List(int fatherStation, int numberStation, int heuristic) {
         this.numberStation = numberStation;
         this.heuristic = heuristic;
+        this.fatherStation = fatherStation;
     }
 
     /**
