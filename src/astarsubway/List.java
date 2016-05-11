@@ -19,6 +19,11 @@ public class List {
         this.heuristic = heuristic;
         this.fatherStation = fatherStation;
     }
+ 
+    public List(int fatherStation, int numberStation){
+        this.fatherStation = fatherStation;
+        this.numberStation = numberStation;
+    }
 
     /**
      * @return the numberStation

@@ -13,9 +13,8 @@ import java.util.ArrayList;
  */
 public class BFS implements Runnable{   
     public ArrayList<Station> stations;
-    public CurrentStation currentStations;
+    public ArrayList<List> subway;
     public int[][] matrix;
-    public int[] timeHeristic;
     public int nodeTime;
     public String path = "Path: ";
     public boolean alreadyPassHere=false;
@@ -23,6 +22,7 @@ public class BFS implements Runnable{
     public int currentStation=0;
     public int currentHeristic=999999;
     public int intermidiateCurrentStation=9999999;
+    private int totalCostPath;
 
     @Override
     public String toString() {
@@ -35,15 +35,9 @@ public class BFS implements Runnable{
         this.matrix = matrix;
         this.currentStation = nodeStart;
         this.stationGoal = nodeGoal;
-        currentStations = new CurrentStation();
-        currentStations.setCurrentPath(-1);
-        currentStations.setCurrentStation(nodeStart);
-        currentStations.setCurrentHeristic(99999);
+        subway = new ArrayList<>();
+        subway.add(new List(-1,currentStation));
         
-    }
-
-    public int getHeuristic(int numStation){
-        return timeHeristic[numStation];
     }
 
     /**
@@ -75,8 +69,12 @@ public class BFS implements Runnable{
             System.out.println("Station: "+currentStation+ "|"+ i +" H: "+matrix[currentStation][i]);
             if(matrix[currentStation][i] < currentHeristic && matrix[currentStation][i] != -1){
                 System.out.println("New best Station: "+i+" H: "+matrix[currentStation][i]);
+                nodeCounter(i);
+                addListSubway(i);
                 this.intermidiateCurrentStation=i;
                 this.currentHeristic = matrix[currentStation][i];
+            
+                
             }
             if(matrix[i][currentStation] == 0){
                 this.alreadyPassHere=true;
@@ -84,8 +82,14 @@ public class BFS implements Runnable{
         }
         this.currentStation = intermidiateCurrentStation;
         System.out.println("Current Station is "+ currentStation);
-        nodeCounter(currentStation);
-        
+    }
+ 
+    
+    public void addListSubway(int i) {
+        subway.add(new List(currentStation, i));
+    }
+    public void sumCostPath(int currentStation){
+        this.totalCostPath = totalCostPath + (stations.get(currentStation).getTime() + stations.get(currentStation).getTimeWait());
     }
     
     public void search(){
@@ -107,7 +111,7 @@ public class BFS implements Runnable{
     }
     
     //trying to use object for get the data.
-    public void bestNodeAround2(){
+    /*public void bestNodeAround2(){
         System.out.println("Current Station is "+ currentStations.getCurrentStation());
         for(int i=0; i < matrix.length; i++){ 
             System.out.println("Station: "+currentStations.getCurrentStation()+ "|"+ i +" H: "+matrix[i][currentStations.getCurrentStation()]);
@@ -121,7 +125,7 @@ public class BFS implements Runnable{
         currentStations.setCurrentStation(currentStations.getCurrentPath());
         System.out.println("Current Station is "+ currentStation);
     }
-
+    */
     @Override
     public void run() {
         search();
