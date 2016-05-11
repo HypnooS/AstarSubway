@@ -5,7 +5,7 @@
  */
 package astarsubway;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
@@ -24,6 +24,8 @@ public class Astar {
     public int currentStation=0;
     public int currentHeuristic=999999;
     public int totalCostPath=0;
+    public int x=0;
+    public String bestTracking="";
 
     public Astar(ArrayList<Station> stations, int[][] matrix, int startStation, int stationGoal) {
         this.stations = stations;
@@ -45,14 +47,11 @@ public class Astar {
     }
  
     public void returnBestNodeOpenList(){
-        //if(){
+        
         this.currentHeuristic = openList.get(0).getHeuristic();
         this.currentStation = openList.get(0).getNumberStation();
                 this.fatherStation = openList.get(0).getFatherStation();
-                System.out.println("x"+openList.get(0).getHeuristic());
-                System.out.println("y"+openList.get(0).getNumberStation());
-                System.out.println("z"+openList.get(0).getFatherStation());
-          //      }
+
         for(int i=0; i < openList.size(); i++){
             System.out.println("returning best Station: "+openList.get(i).getNumberStation() +"Heristic: "+ openList.get(i).getHeuristic());
             if(this.currentHeuristic > openList.get(i).getHeuristic()){
@@ -112,6 +111,24 @@ public class Astar {
             this.alreadyPassHere = true;
         }      
     }
+    
+    public int backTracking(int lastClosedListNumber){
+        
+        for(int i=0;i<closedList.size();i++){
+            if(lastClosedListNumber==closedList.get(i).getNumberStation()){
+            x =i;
+        }
+        }
+        if(lastClosedListNumber!=-1){
+            bestTracking= bestTracking+lastClosedListNumber+">-";
+            lastClosedListNumber=closedList.get(x).getFatherStation();
+            return backTracking(lastClosedListNumber);
+        }
+            
+            return 0;
+        
+    }
+    
     public void search(){
         addNodeOnClosedList(fatherStation,currentStation,0);
         sumCostPath(currentStation);
@@ -128,5 +145,10 @@ public class Astar {
             
             arrive(currentStation);
         }
+        System.out.println("totalcost"+ totalCostPath);
+        backTracking(currentStation);
+        StringBuffer sb=new StringBuffer(bestTracking);
+        sb.reverse();
+        System.out.println("melhor caminho:"+sb);
     }
 }
