@@ -11,7 +11,7 @@ import java.util.*;
  *
  * @author HypnoS
  */
-public class Astar {
+public class Astar implements Runnable{
     public ArrayList<Station> stations;
     public ArrayList<List> openList;
     public ArrayList<List> closedList;
@@ -50,7 +50,7 @@ public class Astar {
         
         this.currentHeuristic = openList.get(0).getHeuristic();
         this.currentStation = openList.get(0).getNumberStation();
-                this.fatherStation = openList.get(0).getFatherStation();
+        this.fatherStation = openList.get(0).getFatherStation();
 
         for(int i=0; i < openList.size(); i++){
             System.out.println("returning best Station: "+openList.get(i).getNumberStation() +"Heristic: "+ openList.get(i).getHeuristic());
@@ -68,8 +68,9 @@ public class Astar {
         for(int i=0; i < matrix.length; i++){
             System.out.println("Station: "+childStation+"|"+ i );
             if(matrix[childStation][i] != -1 && thisNodeExistInOpenList(i) == false && thisNodeExistInClosedList(i) == false){
-                System.out.println("Station: "+childStation+"|"+ i +" H: "+ matrix[childStation][i] + " + G:" + this.totalCostPath);
-                addNodeOnOpenList(childStation,i,( matrix[childStation][i] + totalCostPath ));
+                System.out.println("Station: "+childStation+"|"+ i +" H: "+ matrix[childStation][i] + " + G:" + (this.totalCostPath + stations.get(i).getTime()+stations.get(i).timeWait));
+                System.out.println("Heuristic to add "+ (matrix[childStation][i] + this.totalCostPath + (stations.get(i).timeWait + stations.get(i).getTime())));
+                addNodeOnOpenList(childStation,i,( matrix[childStation][i] + this.totalCostPath + (stations.get(i).timeWait + stations.get(i).getTime()) ));
             }
         }
     }
@@ -150,5 +151,10 @@ public class Astar {
         StringBuffer sb=new StringBuffer(bestTracking);
         sb.reverse();
         System.out.println("melhor caminho:"+sb);
+    }
+
+    @Override
+    public void run() {
+        search();
     }
 }

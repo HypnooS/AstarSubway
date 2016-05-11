@@ -67,9 +67,10 @@ public class MainProblem {
         //System.out.println("Best Time: "+bfs.nodeTime);
         //System.out.println(bfs.path);
         Astar astar = new Astar(stations, matrixStations2, 0, 7);
-        
+        //Thread astarThread = new Thread(astar);
+        //astarThread.setPriority(2);
+        //astarThread.start();
         astar.search();
-     
         
         // TODO code application logic here
         

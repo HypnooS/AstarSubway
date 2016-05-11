@@ -12,7 +12,7 @@ package astarsubway;
 public class Station {
     private int numId;
     private int time;
-    private int timeWait;
+    public int timeWait;
     
     public Station(int numId, int time, int timeWait){
         this.time = time;
