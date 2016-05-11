@@ -45,6 +45,14 @@ public class Astar {
     }
  
     public void returnBestNodeOpenList(){
+        //if(){
+        this.currentHeuristic = openList.get(0).getHeuristic();
+        this.currentStation = openList.get(0).getNumberStation();
+                this.fatherStation = openList.get(0).getFatherStation();
+                System.out.println("x"+openList.get(0).getHeuristic());
+                System.out.println("y"+openList.get(0).getNumberStation());
+                System.out.println("z"+openList.get(0).getFatherStation());
+          //      }
         for(int i=0; i < openList.size(); i++){
             System.out.println("returning best Station: "+openList.get(i).getNumberStation() +"Heristic: "+ openList.get(i).getHeuristic());
             if(this.currentHeuristic > openList.get(i).getHeuristic()){
@@ -108,10 +116,12 @@ public class Astar {
         addNodeOnClosedList(fatherStation,currentStation,0);
         sumCostPath(currentStation);
         expandChildrenStations(currentStation);
+        removeNodeFromOpenList( currentStation);
         while(alreadyPassHere!=true) {   
             returnBestNodeOpenList();
             sumCostPath(currentStation);
             expandChildrenStations(currentStation);
+            removeNodeFromOpenList( currentStation);
             System.out.println("Going to "+currentStation);
 
             addNodeOnClosedList(fatherStation,currentStation,totalCostPath);
