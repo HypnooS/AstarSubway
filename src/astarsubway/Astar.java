@@ -117,7 +117,7 @@ public class Astar implements Runnable{
         
         for(int i=0;i<closedList.size();i++){
             if(lastClosedListNumber==closedList.get(i).getNumberStation()){
-            x =i;
+            x=i;
         }
         }
         if(lastClosedListNumber!=-1){
@@ -141,16 +141,14 @@ public class Astar implements Runnable{
             expandChildrenStations(currentStation);
             removeNodeFromOpenList( currentStation);
             System.out.println("Going to "+currentStation);
-
             addNodeOnClosedList(fatherStation,currentStation,totalCostPath);
-            
             arrive(currentStation);
         }
-        System.out.println("totalcost"+ totalCostPath);
+        System.out.println("Total Cost: "+ totalCostPath);
         backTracking(currentStation);
         StringBuffer sb=new StringBuffer(bestTracking);
         sb.reverse();
-        System.out.println("melhor caminho:"+sb);
+        System.out.println("Best Way: "+sb);
     }
 
     @Override

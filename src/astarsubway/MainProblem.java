@@ -47,32 +47,33 @@ public class MainProblem {
         
         int[][] matrixStations2 = {
             {-1,12,-1,-1,-1,-1,-1,-1},
-            {12,-1,11,10,-1,-1,-1,-1},
-            {-1,11,-1,-1,-1,-1,-1,-1},
-            {-1,10,-1,-1, 8,-1,-1,-1},
+            {16,-1, 9, 7,-1,-1,-1,-1},
+            {-1,10,-1,-1,-1,-1,-1,-1},
+            {-1,10,-1,-1, 6,-1,-1,-1},
             {-1,-1,-1, 8,-1, 4, 7,-1},
-            {-1,-1,-1,-1, 4,-1,-1, 0},
-            {-1,-1,-1,-1, 7,-1,-1,-1},
+            {-1,-1,-1,-1, 6,-1,-1, 0},
+            {-1,-1,-1,-1, 9,-1,-1,-1},
             {-1,-1,-1,-1,-1, 0,-1,-1}
         };
         int[][] matrixStations3 = {
             {-1,10,-1,-1},
-            {-1,-1, 5,-1},
+            {12,-1, 5, 6},
             {-1,-1,-1, 0},
-            {-1,-1,-1,-1}
+            {-1,-1, 8,-1}
         };
-        BFS bfs = new BFS(stations, matrixStations2, 0, 7);
+        //BFS bfs = new BFS(stations, matrixStations2, 0, 7);
         //Thread bfsThread = new Thread(bfs);
-        bfs.search();
+        //bfs.search();
         //bfsThread.start();
-        System.out.println("Best Time: "+bfs.nodeTime);
-        System.out.println(bfs.path);
+        //System.out.println("Best Time: "+bfs.nodeTime);
+        //System.out.println(bfs.path);
         //Astar astar = new Astar(stations, matrixStations2, 0, 7);
         //Thread astarThread = new Thread(astar);
         //astarThread.setPriority(2);
         //astarThread.start();
         //astar.search();
-        
+        GreedyBestFirst bfs = new GreedyBestFirst(stations, matrixStations2, 0, 7);
+        bfs.search();
         // TODO code application logic here
         
     }

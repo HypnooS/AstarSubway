@@ -73,8 +73,6 @@ public class BFS implements Runnable{
                 addListSubway(i);
                 this.intermidiateCurrentStation=i;
                 this.currentHeristic = matrix[currentStation][i];
-            
-                
             }
             if(matrix[i][currentStation] == 0){
                 this.alreadyPassHere=true;
@@ -83,8 +81,6 @@ public class BFS implements Runnable{
         this.currentStation = intermidiateCurrentStation;
         System.out.println("Current Station is "+ currentStation);
     }
- 
-    
     public void addListSubway(int i) {
         subway.add(new List(currentStation, i));
     }
