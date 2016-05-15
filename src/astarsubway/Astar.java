@@ -114,20 +114,17 @@ public class Astar implements Runnable{
     }
     
     public int backTracking(int lastClosedListNumber){
-        
         for(int i=0;i<closedList.size();i++){
             if(lastClosedListNumber==closedList.get(i).getNumberStation()){
-            x=i;
-        }
+                x=i;
+            }
         }
         if(lastClosedListNumber!=-1){
             bestTracking= bestTracking+lastClosedListNumber+">-";
             lastClosedListNumber=closedList.get(x).getFatherStation();
             return backTracking(lastClosedListNumber);
         }
-            
-            return 0;
-        
+        return 0;
     }
     
     public void search(){
