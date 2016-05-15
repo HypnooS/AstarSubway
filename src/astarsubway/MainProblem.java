@@ -77,5 +77,88 @@ public class MainProblem {
         // TODO code application logic here
         
     }
+    public static int[][] createMatrixForProblem1() {
+        int[][] subwayMatrix = {
+            {-1,44,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},//Blue line Start
+            {50,-1,40,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,44,-1,36,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,40,-1,34,-1,-1,-1,-1,-1,-1,-1,-1,-1,22,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,36,-1,30,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,34,-1,24,-1,-1,-1,-1,-1,-1,-1,-1,26,32,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,30,-1,20,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,24,-1,18,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,20,-1,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,18,-1,19,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,16,-1,24,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,24,-1,32,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,24,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},//Blue line End
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,22,-1,-1,-1,-1,-1,-1,-1,-1},//Red line Start
+            {-1,-1,-1,36,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,-1,26,-1,10,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,30,-1,-1,-1,-1,-1,-1,-1,-1,22,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,30,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},//Red line End
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,22,-1,-1,-1,35,-1,12,06,-1},//Green line-Consolação
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,10,-1,-1,-1,-1,-1},//
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,12,-1,-1},//Green line Start - Brigadeiro
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,10,-1,-1,14,-1,-1},//--Trianon Masp
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,10,-1,-1,-1,-1,00},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,06,-1} //Green line End - V. Madalena
+        }; 
+        return subwayMatrix;
+    }
+
+    public static void createSubwayProblem1At6PM(ArrayList<Station> stations) {
+        System.out.println("Creating the stations in Subway at 6PM ");
+        stations.add(new Station(0, 2, 2));
+        stations.add(new Station(1, 2, 2));
+        stations.add(new Station(2, 2, 2));
+        stations.add(new Station(3, 2, 2));
+        stations.add(new Station(4, 2, 2));
+        stations.add(new Station(5, 2, 4));
+        stations.add(new Station(6, 2, 2));
+        stations.add(new Station(7, 2, 2));
+        stations.add(new Station(8, 2, 2));
+        stations.add(new Station(9, 2, 2));
+        stations.add(new Station(10, 2, 2));
+        stations.add(new Station(11, 2, 2));
+        stations.add(new Station(12, 2, 2));
+        stations.add(new Station(13, 2, 2));
+        stations.add(new Station(14, 60, 120));
+        stations.add(new Station(15, 2, 2));
+        stations.add(new Station(16, 2, 2));
+        stations.add(new Station(17, 2, 2));
+        stations.add(new Station(18, 2, 2));
+        stations.add(new Station(19, 2, 2));
+        stations.add(new Station(20, 2, 2));
+        stations.add(new Station(21, 2, 2));
+        stations.add(new Station(22, 2, 2));
+        System.out.println("Go to go!!!");
+    }
+    public static void createSubwayProblem1At4AM(ArrayList<Station> stations) {
+        System.out.println("Creating the stations in Subway at 4AM ");
+        stations.add(new Station(0, 2, 2));
+        stations.add(new Station(1, 2, 2));
+        stations.add(new Station(2, 2, 2));
+        stations.add(new Station(3, 2, 2));
+        stations.add(new Station(4, 2, 2));
+        stations.add(new Station(5, 2, 4));
+        stations.add(new Station(6, 2, 2));
+        stations.add(new Station(7, 2, 2));
+        stations.add(new Station(8, 2, 2));
+        stations.add(new Station(9, 2, 2));
+        stations.add(new Station(10, 2, 2));
+        stations.add(new Station(11, 2, 2));
+        stations.add(new Station(12, 2, 2));
+        stations.add(new Station(13, 2, 2));
+        stations.add(new Station(14, 2, 4));
+        stations.add(new Station(15, 2, 2));
+        stations.add(new Station(16, 2, 2));
+        stations.add(new Station(17, 2, 2));
+        stations.add(new Station(18, 2, 2));
+        stations.add(new Station(19, 2, 2));
+        stations.add(new Station(20, 2, 2));
+        stations.add(new Station(21, 2, 2));
+        stations.add(new Station(22, 2, 2));
+        System.out.println("Go to go!!!");
+    }
     
 }
