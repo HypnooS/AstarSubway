@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author HypnoS
  */
-public class GreedyBestFirst {
+public class GreedyBestFirst implements Runnable{
     
     public ArrayList<Station> stations;
     public ArrayList<List> bestWay;
@@ -120,7 +120,7 @@ public class GreedyBestFirst {
         }
         }
         if(lastClosedListNumber!=-1){
-            bestTracking= bestTracking+lastClosedListNumber+">-";
+            bestTracking= bestTracking+lastClosedListNumber+"]-[";
             lastClosedListNumber=bestWay.get(counterTrack).getFatherStation();
             return backTracking(lastClosedListNumber);
         }
@@ -138,8 +138,12 @@ public class GreedyBestFirst {
         System.out.println("Total Cost: "+ totalCostPath);
         backTracking(currentStation);
         StringBuffer sb=new StringBuffer(bestTracking);
-        sb.reverse();
-        System.out.println("Best Way: "+sb);
+        System.out.println("Best Way: [START]-["+sb+"END]");
+    }
+
+    @Override
+    public void run() {
+        search();
     }
     
     

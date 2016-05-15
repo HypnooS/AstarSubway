@@ -61,19 +61,24 @@ public class MainProblem {
             {-1,-1,-1, 0},
             {-1,-1, 8,-1}
         };
+        
+        int[][] matrixStation = createMatrixForProblem1();
+        createSubwayProblem1At6PM(stations);
         //BFS bfs = new BFS(stations, matrixStations2, 0, 7);
         //Thread bfsThread = new Thread(bfs);
         //bfs.search();
         //bfsThread.start();
         //System.out.println("Best Time: "+bfs.nodeTime);
         //System.out.println(bfs.path);
-        //Astar astar = new Astar(stations, matrixStations2, 0, 7);
-        //Thread astarThread = new Thread(astar);
-        //astarThread.setPriority(2);
-        //astarThread.start();
+        Astar astar = new Astar(stations, matrixStation, 0, 22);
+        Thread astarThread = new Thread(astar);
+        astarThread.setPriority(2);
+        astarThread.start();
         //astar.search();
-        GreedyBestFirst bfs = new GreedyBestFirst(stations, matrixStations2, 0, 7);
-        bfs.search();
+        //GreedyBestFirst bfs = new GreedyBestFirst(stations, matrixStation, 0, 22);
+        //Thread bfsThread = new Thread(bfs);
+        //bfsThread.start();
+        //bfs.search();
         // TODO code application logic here
         
     }

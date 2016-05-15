@@ -120,7 +120,7 @@ public class Astar implements Runnable{
             }
         }
         if(lastClosedListNumber!=-1){
-            bestTracking= bestTracking+lastClosedListNumber+">-";
+            bestTracking= bestTracking+lastClosedListNumber+"]-[";
             lastClosedListNumber=closedList.get(x).getFatherStation();
             return backTracking(lastClosedListNumber);
         }
@@ -144,8 +144,7 @@ public class Astar implements Runnable{
         System.out.println("Total Cost: "+ totalCostPath);
         backTracking(currentStation);
         StringBuffer sb=new StringBuffer(bestTracking);
-        sb.reverse();
-        System.out.println("Best Way: "+sb);
+        System.out.println("Best Way: [START]-["+sb+"END]");
     }
 
     @Override
