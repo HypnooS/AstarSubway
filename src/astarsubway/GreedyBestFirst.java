@@ -134,7 +134,7 @@ public class GreedyBestFirst implements Runnable{
         while(foundGoal!=true){
             findBestStation();
         }
-        System.out.println("Total Cost: "+ totalCostPath + " CurrentStation: "+currentStation);
+        System.out.println("Total Cost: "+ totalCostPath);
         backTracking(currentStation);
         String sb=bestTracking;
         System.out.println("Best Way: [START]-["+sb+"END]");
