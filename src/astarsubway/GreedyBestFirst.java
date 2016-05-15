@@ -117,15 +117,14 @@ public class GreedyBestFirst implements Runnable{
         for(int i=0;i<bestWay.size();i++){
             if(lastClosedListNumber==bestWay.get(i).getNumberStation()){
             counterTrack =i;
-        }
+            }
         }
         if(lastClosedListNumber!=-1){
             bestTracking= bestTracking+lastClosedListNumber+"]-[";
             lastClosedListNumber=bestWay.get(counterTrack).getFatherStation();
             return backTracking(lastClosedListNumber);
         }
-            
-            return 0;
+        return 0;
         
     }
     
@@ -135,14 +134,15 @@ public class GreedyBestFirst implements Runnable{
         while(foundGoal!=true){
             findBestStation();
         }
-        System.out.println("Total Cost: "+ totalCostPath);
+        System.out.println("Total Cost: "+ totalCostPath + " CurrentStation: "+currentStation);
         backTracking(currentStation);
-        StringBuffer sb=new StringBuffer(bestTracking);
+        String sb=bestTracking;
         System.out.println("Best Way: [START]-["+sb+"END]");
     }
 
     @Override
     public void run() {
+        
         search();
     }
     

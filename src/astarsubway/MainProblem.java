@@ -20,21 +20,6 @@ public class MainProblem {
     public static void main(String[] args) {
         //testing stations//
         ArrayList<Station> stations = new ArrayList<>();
-        //First test with 7 stations
-        stations.add(new Station(0, 2, 2)); //Id 0 with waiting time plus time to arrive (2+2)
-        stations.add(new Station(1, 2, 2)); //
-        stations.add(new Station(2, 2, 2)); //
-        stations.add(new Station(3, 2, 2));
-        stations.add(new Station(4, 2, 2));
-        stations.add(new Station(5, 2, 2));
-        stations.add(new Station(6, 2, 2));
-        stations.add(new Station(7, 2, 2));
-      /*  Station[][] matrix ={
-            {null,stations.get(0), null, null},
-            {stations.get(1), null, stations.get(1), stations.get(1)},
-            {null, stations.get(2), null, null},
-            {null, stations.get(3), null, null}
-        };*/
         int[][] matrixStations1 = {
             {-1, 6,-1,-1,-1,-1,-1},
             { 6,-1, 4,-1,-1,-1,-1},
@@ -82,6 +67,18 @@ public class MainProblem {
         // TODO code application logic here
         
     }
+
+    public static void methodTestStationObj(ArrayList<Station> stations) {
+        //First test with 7 stations
+        stations.add(new Station(0, 2, 2)); //Id 0 with waiting time plus time to arrive (2+2)
+        stations.add(new Station(1, 2, 2)); //
+        stations.add(new Station(2, 2, 2)); //
+        stations.add(new Station(3, 2, 2));
+        stations.add(new Station(4, 2, 2));
+        stations.add(new Station(5, 2, 2));
+        stations.add(new Station(6, 2, 2));
+        stations.add(new Station(7, 2, 2));
+    }
     public static int[][] createMatrixForProblem1() {
         int[][] subwayMatrix = {
             {-1,44,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},//Blue line Start
@@ -113,23 +110,23 @@ public class MainProblem {
 
     public static void createSubwayProblem1At6PM(ArrayList<Station> stations) {
         System.out.println("Creating the stations in Subway at 6PM ");
-        stations.add(new Station(0, 2, 2));
-        stations.add(new Station(1, 2, 2));
-        stations.add(new Station(2, 2, 2));
-        stations.add(new Station(3, 2, 2));
-        stations.add(new Station(4, 2, 2));
-        stations.add(new Station(5, 2, 4));
-        stations.add(new Station(6, 2, 2));
-        stations.add(new Station(7, 2, 2));
-        stations.add(new Station(8, 2, 2));
-        stations.add(new Station(9, 2, 2));
-        stations.add(new Station(10, 2, 2));
-        stations.add(new Station(11, 2, 2));
+        stations.add(new Station(0, 2, 1));
+        stations.add(new Station(1, 2, 1));
+        stations.add(new Station(2, 2, 1));
+        stations.add(new Station(3, 2, 1));
+        stations.add(new Station(4, 2, 1));
+        stations.add(new Station(5, 2, 10));
+        stations.add(new Station(6, 2, 1));
+        stations.add(new Station(7, 2, 1));
+        stations.add(new Station(8, 2, 1));
+        stations.add(new Station(9, 2, 1));
+        stations.add(new Station(10, 2, 1));
+        stations.add(new Station(11, 2, 1));
         stations.add(new Station(12, 2, 2));
-        stations.add(new Station(13, 2, 2));
-        stations.add(new Station(14, 60, 120));
-        stations.add(new Station(15, 2, 2));
-        stations.add(new Station(16, 2, 2));
+        stations.add(new Station(13, 30, 20));
+        stations.add(new Station(14, 30, 60));
+        stations.add(new Station(15, 30, 30));
+        stations.add(new Station(16, 30, 20));
         stations.add(new Station(17, 2, 2));
         stations.add(new Station(18, 2, 2));
         stations.add(new Station(19, 2, 2));
