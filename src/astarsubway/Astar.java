@@ -149,6 +149,9 @@ public class Astar implements Runnable{
 
     @Override
     public void run() {
+        long currentTimeMillis = System.currentTimeMillis();
         search();
+        currentTimeMillis = System.currentTimeMillis() - currentTimeMillis;
+        System.out.println("Execute Time: "+ currentTimeMillis);
     }
 }

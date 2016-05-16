@@ -55,14 +55,15 @@ public class MainProblem {
         //bfsThread.start();
         //System.out.println("Best Time: "+bfs.nodeTime);
         //System.out.println(bfs.path);
-        //Astar astar = new Astar(stations, matrixStation, 0, 22);
-        //Thread astarThread = new Thread(astar);
-        //astarThread.setPriority(2);
-        //astarThread.start();
+        Astar astar = new Astar(stations, matrixStation, 0, 22);
+        Thread astarThread = new Thread(astar);
+        astarThread.setPriority(5);
+        astarThread.start();
         //astar.search();
-        GreedyBestFirst bfs = new GreedyBestFirst(stations, matrixStation, 0, 22);
-        Thread bfsThread = new Thread(bfs);
-        bfsThread.start();
+        //GreedyBestFirst bfs = new GreedyBestFirst(stations, matrixStation, 0, 22);
+        // Thread bfsThread = new Thread(bfs);
+        //bfsThread.setPriority(5);
+        //bfsThread.start();
         //bfs.search();
         // TODO code application logic here
         
