@@ -12,15 +12,8 @@ import java.util.ArrayList;
  * @author Caio Serrano
  */
 public class MainProblem {
-       
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        //testing stations//
-        ArrayList<Station> stations = new ArrayList<>();
-        int[][] matrixStations1 = {
+    int[][] matrixStations1 = {
             {-1, 6,-1,-1,-1,-1,-1},
             { 6,-1, 4,-1,-1,-1,-1},
             {-1, 4,-1, 7, 2,-1,-1},
@@ -30,7 +23,7 @@ public class MainProblem {
             {-1,-1,-1,-1, 1,-1,-1}
         };
         
-        int[][] matrixStations2 = {
+    int[][] matrixStations2 = {
             {-1,12,-1,-1,-1,-1,-1,-1},
             {16,-1, 9, 7,-1,-1,-1,-1},
             {-1,10,-1,-1,-1,-1,-1,-1},
@@ -40,33 +33,39 @@ public class MainProblem {
             {-1,-1,-1,-1, 9,-1,-1,-1},
             {-1,-1,-1,-1,-1, 0,-1,-1}
         };
-        int[][] matrixStations3 = {
+    int[][] matrixStations3 = {
             {-1,10,-1,-1},
             {12,-1, 5, 6},
             {-1,-1,-1, 0},
             {-1,-1, 8,-1}
         };
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
         
-        int[][] matrixStation = createMatrixForProblem1();
-        createSubwayProblem1At6PM(stations);
-        //BFS bfs = new BFS(stations, matrixStations2, 0, 7);
-        //Thread bfsThread = new Thread(bfs);
-        //bfs.search();
-        //bfsThread.start();
-        //System.out.println("Best Time: "+bfs.nodeTime);
-        //System.out.println(bfs.path);
-        Astar astar = new Astar(stations, matrixStation, 0, 22);
-        Thread astarThread = new Thread(astar);
-        astarThread.setPriority(5);
-        astarThread.start();
-        //astar.search();
-        //GreedyBestFirst bfs = new GreedyBestFirst(stations, matrixStation, 0, 22);
-        // Thread bfsThread = new Thread(bfs);
-        //bfsThread.setPriority(5);
-        //bfsThread.start();
-        //bfs.search();
-        // TODO code application logic here
+        ArrayList<Station> stations = new ArrayList<>();
         
+        int[][] matrixStation = createMatrixForProblem2();
+        createSubwayProblem2At6AM(stations);
+        Thread searchThread = createAStarSearch(stations, matrixStation, 0 , 19); //createBFSSearch(stations, matrixStation);
+        searchThread.setPriority(5);
+        searchThread.start();
+        
+        
+    }
+
+    public static Thread createBFSSearch(ArrayList<Station> stations, int[][] matrixStation, int startStation, int endStation) {;
+        GreedyBestFirst search = new GreedyBestFirst(stations, matrixStation, startStation, endStation);
+        Thread searchThread = new Thread(search);
+        return searchThread;
+    }
+
+    public static Thread createAStarSearch(ArrayList<Station> stations, int[][] matrixStation, int startStation, int endStation) {
+        Astar search = new Astar(stations, matrixStation, startStation, endStation);
+        Thread searchThread = new Thread(search);
+        return searchThread;
     }
 
     public static void methodTestStationObj(ArrayList<Station> stations) {
@@ -164,4 +163,114 @@ public class MainProblem {
         System.out.println("Go to go!!!");
     }
     
+    public static int[][] createMatrixForProblem2(){
+        int[][] subwayMatrix = {
+            {-1,55,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {58,-1,53,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,55,-1,51,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,53,-1,48,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,51,-1,46,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,48,-1,44,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,46,-1,41,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,44,-1,40,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,41,-1,37,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,40,-1,37,-1,-1,21,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,37,-1,35,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,37,-1,35,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,35,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,34,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,37,-1,-1,-1,-1,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,21,-1,19,11,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16,-1,-1,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,11,-1,4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,7,-1,0,6,10,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,18,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,18,-1,-1,-1,13,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,10,-1,16,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,13,-1,19,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,10,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,9,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,28,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,26,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,12,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,26,-1,-1,30,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,19,-1,-1,34,-1,32,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,30,-1,34},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,32,-1},
+        };
+        return subwayMatrix; 
+    }
+    
+    public static void createSubwayProblem2At4AM(ArrayList<Station> stations) {
+        System.out.println("Creating the stations in Subway at 4AM ");
+        stations.add(new Station(0, 2, 2));
+        stations.add(new Station(1, 2, 2));
+        stations.add(new Station(2, 2, 2));
+        stations.add(new Station(3, 2, 2));
+        stations.add(new Station(4, 2, 2));
+        stations.add(new Station(5, 2, 4));
+        stations.add(new Station(6, 2, 2));
+        stations.add(new Station(7, 2, 2));
+        stations.add(new Station(8, 2, 2));
+        stations.add(new Station(9, 2, 2));
+        stations.add(new Station(10, 2, 2));
+        stations.add(new Station(11, 2, 2));
+        stations.add(new Station(12, 2, 2));
+        stations.add(new Station(13, 2, 2));
+        stations.add(new Station(14, 2, 4));
+        stations.add(new Station(15, 2, 2));
+        stations.add(new Station(16, 2, 2));
+        stations.add(new Station(17, 2, 2));
+        stations.add(new Station(18, 2, 2));
+        stations.add(new Station(19, 2, 2));
+        stations.add(new Station(20, 2, 2));
+        stations.add(new Station(21, 2, 2));
+        stations.add(new Station(22, 2, 2));
+        stations.add(new Station(23, 2, 2));
+        stations.add(new Station(24, 2, 2));
+        stations.add(new Station(25, 2, 2));
+        stations.add(new Station(26, 2, 2));
+        stations.add(new Station(27, 2, 2));
+        stations.add(new Station(28, 2, 2));
+        stations.add(new Station(29, 2, 2));
+        stations.add(new Station(30, 2, 2));
+        
+        System.out.println("Go to go!!!");
+    }
+    
+     public static void createSubwayProblem2At6AM(ArrayList<Station> stations) {
+        System.out.println("Creating the stations in Subway at 4AM ");
+        stations.add(new Station(0, 2, 2));
+        stations.add(new Station(1, 2, 2));
+        stations.add(new Station(2, 2, 2));
+        stations.add(new Station(3, 2, 2));
+        stations.add(new Station(4, 2, 2));
+        stations.add(new Station(5, 2, 4));
+        stations.add(new Station(6, 2, 2));
+        stations.add(new Station(7, 2, 2));
+        stations.add(new Station(8, 2, 2));
+        stations.add(new Station(9, 5, 10));
+        stations.add(new Station(10, 2, 2));
+        stations.add(new Station(11, 2, 2));
+        stations.add(new Station(12, 2, 2));
+        stations.add(new Station(13, 10, 20));
+        stations.add(new Station(14, 10, 20));
+        stations.add(new Station(15, 10, 20));
+        stations.add(new Station(16, 2, 2));
+        stations.add(new Station(17, 2, 2));
+        stations.add(new Station(18, 2, 2));
+        stations.add(new Station(19, 2, 2));
+        stations.add(new Station(20, 2, 2));
+        stations.add(new Station(21, 2, 2));
+        stations.add(new Station(22, 2, 2));
+        stations.add(new Station(23, 2, 2));
+        stations.add(new Station(24, 2, 2));
+        stations.add(new Station(25, 2, 2));
+        stations.add(new Station(26, 2, 2));
+        stations.add(new Station(27, 2, 2));
+        stations.add(new Station(28, 2, 2));
+        stations.add(new Station(29, 2, 2));
+        stations.add(new Station(30, 2, 2));
+        
+        System.out.println("Go to go!!!");
+    }
 }
