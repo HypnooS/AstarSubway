@@ -44,16 +44,12 @@ public class MainProblem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         ArrayList<Station> stations = new ArrayList<>();
-        
         int[][] matrixStation = createMatrixForProblem2();
-        createSubwayProblem2At6AM(stations);
+        createSubwayProblem2At6PM(stations);
         Thread searchThread = createAStarSearch(stations, matrixStation, 0 , 19); //createBFSSearch(stations, matrixStation);
         searchThread.setPriority(5);
         searchThread.start();
-        
-        
     }
 
     public static Thread createBFSSearch(ArrayList<Station> stations, int[][] matrixStation, int startStation, int endStation) {;
@@ -165,20 +161,20 @@ public class MainProblem {
     
     public static int[][] createMatrixForProblem2(){
         int[][] subwayMatrix = {
-            {-1,55,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {58,-1,53,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,55,-1,51,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,53,-1,48,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,51,-1,46,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,48,-1,44,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,46,-1,41,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,44,-1,40,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,41,-1,37,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1,40,-1,37,-1,-1,21,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1,-1,37,-1,35,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,37,-1,35,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,35,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,34,-1,-1,-1},
-            {-1,-1,-1,-1,-1,-1,-1,-1,-1,37,-1,-1,-1,-1,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {48,-1,43,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,45,-1,41,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,43,-1,38,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,41,-1,36,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,38,-1,34,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,36,-1,31,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,34,-1,30,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,31,-1,27,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,30,-1,31,-1,-1,21,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,27,-1,28,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,31,-1,25,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,28,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,34,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,27,-1,-1,-1,-1,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,21,-1,19,11,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,16,-1,-1,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -233,44 +229,42 @@ public class MainProblem {
         stations.add(new Station(28, 2, 2));
         stations.add(new Station(29, 2, 2));
         stations.add(new Station(30, 2, 2));
-        
         System.out.println("Go to go!!!");
     }
     
-     public static void createSubwayProblem2At6AM(ArrayList<Station> stations) {
+     public static void createSubwayProblem2At6PM(ArrayList<Station> stations) {
         System.out.println("Creating the stations in Subway at 4AM ");
-        stations.add(new Station(0, 2, 2));
-        stations.add(new Station(1, 2, 2));
-        stations.add(new Station(2, 2, 2));
-        stations.add(new Station(3, 2, 2));
-        stations.add(new Station(4, 2, 2));
-        stations.add(new Station(5, 2, 4));
-        stations.add(new Station(6, 2, 2));
-        stations.add(new Station(7, 2, 2));
-        stations.add(new Station(8, 2, 2));
-        stations.add(new Station(9, 5, 10));
-        stations.add(new Station(10, 2, 2));
-        stations.add(new Station(11, 2, 2));
-        stations.add(new Station(12, 2, 2));
-        stations.add(new Station(13, 10, 20));
-        stations.add(new Station(14, 10, 20));
-        stations.add(new Station(15, 10, 20));
-        stations.add(new Station(16, 2, 2));
-        stations.add(new Station(17, 2, 2));
-        stations.add(new Station(18, 2, 2));
-        stations.add(new Station(19, 2, 2));
-        stations.add(new Station(20, 2, 2));
-        stations.add(new Station(21, 2, 2));
-        stations.add(new Station(22, 2, 2));
-        stations.add(new Station(23, 2, 2));
-        stations.add(new Station(24, 2, 2));
+        stations.add(new Station(0, 2, 1));
+        stations.add(new Station(1, 2, 1));
+        stations.add(new Station(2, 2, 1));
+        stations.add(new Station(3, 2, 1));
+        stations.add(new Station(4, 2, 1));
+        stations.add(new Station(5, 2, 1));
+        stations.add(new Station(6, 2, 1));
+        stations.add(new Station(7, 2, 1));
+        stations.add(new Station(8, 2, 1));
+        stations.add(new Station(9, 3, 1));
+        stations.add(new Station(10, 2, 1));
+        stations.add(new Station(11, 2, 1));
+        stations.add(new Station(12, 2, 1));
+        stations.add(new Station(13, 20, 10));
+        stations.add(new Station(14, 20, 10));
+        stations.add(new Station(15, 5, 5));
+        stations.add(new Station(16, 20, 10));
+        stations.add(new Station(17, 20, 20));
+        stations.add(new Station(18, 2, 1));
+        stations.add(new Station(19, 2, 1));
+        stations.add(new Station(20, 2, 1));
+        stations.add(new Station(21, 2, 1));
+        stations.add(new Station(22, 2, 1));
+        stations.add(new Station(23, 2, 1));
+        stations.add(new Station(24, 2, 1));
         stations.add(new Station(25, 2, 2));
         stations.add(new Station(26, 2, 2));
-        stations.add(new Station(27, 2, 2));
+        stations.add(new Station(27, 2, 1));
         stations.add(new Station(28, 2, 2));
         stations.add(new Station(29, 2, 2));
         stations.add(new Station(30, 2, 2));
-        
         System.out.println("Go to go!!!");
     }
 }
