@@ -45,9 +45,27 @@ public class MainProblem {
      */
     public static void main(String[] args) {
         ArrayList<Station> stations = new ArrayList<>();
-        int[][] matrixStation = createMatrixForProblem2();
-        createSubwayProblem2At6PM(stations);
-        Thread searchThread = createAStarSearch(stations, matrixStation, 0 , 19); //createBFSSearch(stations, matrixStation);
+        int[][] matrixStation;
+        int[][] matrixStations3 = {
+            {-1,10,-1,-1,-1,-1},
+            {12,-1, 6, 5,-1,-1},
+            {-1,-1,-1, 0,-1,-1},
+            {-1,-1, 8,-1, 4,-1},
+            {-1,-1, 5,-1,-1,3},
+            {-1,-1,-1,-1,4,-1}
+        };
+        //createSubwayProblem2At6PM(stations);
+        stations.add(new Station(0, 2, 2)); //Id 0 with waiting time plus time to arrive (2+2)
+        stations.add(new Station(1, 2, 2)); //
+        stations.add(new Station(2, 2, 2)); //
+        stations.add(new Station(3, 2, 2));
+        stations.add(new Station(4, 2, 2));
+        stations.add(new Station(5, 2, 2));
+        stations.add(new Station(6, 2, 2));
+        stations.add(new Station(7, 2, 2));
+        GreedyBestFirst search = new GreedyBestFirst(stations, matrixStations3, 0, 2);
+        Thread searchThread = new Thread(search);
+        
         searchThread.setPriority(5);
         searchThread.start();
     }
