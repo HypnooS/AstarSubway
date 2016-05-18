@@ -70,20 +70,13 @@ public class GreedyBestFirst implements Runnable{
             addInBlackList(intermediateStation);
             this.intermediateStation=currentFather;
             currentHeuristic=bestWay.get(1).getHeuristic();
-            System.out.println("ddddddddddddd"+bestWay.get(1).getHeuristic());
+            System.out.println("That´s all Folks!!!! =D"+bestWay.get(1).getHeuristic());
             this.intermediateFather = bestWay.get(bestWay.size()-2).getFatherStation();
         }
-
         this.currentStation = intermediateStation;
         this.currentFather = intermediateFather;
-        
-
-        
-        //System.out.println("Father: "+currentFather +" Station: "+currentStation+"|"+ currentStation +" H: "+ currentHeuristic);
-        
         addInBestWay(currentFather, currentStation, currentHeuristic);
         sumCostPath(currentStation);
-        
         if(currentStation == stationGoal){
             this.foundGoal = true;
         }
