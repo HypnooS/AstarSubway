@@ -25,7 +25,7 @@ public class GreedyBestFirst implements Runnable{
     private int intermediateStation;
     private boolean foundGoal;
     private int totalCostPath;
-    private String bestTracking;
+    private String bestTracking="";
     public int counterTrack;
 
     public GreedyBestFirst(ArrayList<Station> stations, int[][] matrix, int currentStation, int stationGoal) {
@@ -39,9 +39,9 @@ public class GreedyBestFirst implements Runnable{
         blackList = new ArrayList<>();
     }
     
-    private void addInBestWay(int fatherStation, int currentStation){
+    private void addInBestWay(int fatherStation, int currentStation, int currentHeuristic){
         System.out.println("Adding the "+currentStation+" on Best Way List");
-        bestWay.add(new List(fatherStation,currentStation));
+        bestWay.add(new List(fatherStation,currentStation,currentHeuristic));
     }
     
     private void addInBlackList(int currentStation){
@@ -50,7 +50,7 @@ public class GreedyBestFirst implements Runnable{
             if(bestWay.get(i).getNumberStation() == currentStation){
                 blackList.add(new List(bestWay.get(i).getFatherStation(), bestWay.get(i).getNumberStation()));
                 this.currentStation=bestWay.get(i).getFatherStation();
-                bestWay.remove(i);
+                
             }            
         }
     }
@@ -59,18 +59,30 @@ public class GreedyBestFirst implements Runnable{
         System.out.println("Current Station: "+ currentStation);
         for(int i=0; i < matrix.length; i++){
             System.out.println("Station: "+currentStation+"|"+ i );
-            if(matrix[currentStation][i] < currentHeuristic && matrix[currentStation][i] != -1 && thisStationExistInBlackList(i) == false ){
+            if(matrix[currentStation][i] < currentHeuristic && matrix[currentStation][i] != -1 && thisStationExistInBlackList(i)==false){
                 System.out.println("Station: "+currentStation+"|"+ i +" H: "+ matrix[currentStation][i]);
                 this.intermediateFather = currentStation;
                 this.intermediateStation = i;
                 this.currentHeuristic = matrix[currentStation][i];
             }
         }
+        if(intermediateStation==bestWay.get(bestWay.size() -1 ).getNumberStation()){
+            addInBlackList(intermediateStation);
+            currentStation=currentFather;
+            currentHeuristic=bestWay.get(bestWay.size()-2 ).getHeuristic();
+            this.currentFather = currentStation;
+        }
+
         this.currentStation = intermediateStation;
         this.currentFather = intermediateFather;
+        
+
+        
         //System.out.println("Father: "+currentFather +" Station: "+currentStation+"|"+ currentStation +" H: "+ currentHeuristic);
-        addInBestWay(currentFather, currentStation);
+        
+        addInBestWay(currentFather, currentStation, currentHeuristic);
         sumCostPath(currentStation);
+        
         if(currentStation == stationGoal){
             this.foundGoal = true;
         }
@@ -101,8 +113,8 @@ public class GreedyBestFirst implements Runnable{
     }
     
     
-    private boolean thisStationExistInBlackList(int i) {
-        for(int j=0; i < blackList.size(); i++){
+    private boolean thisStationExistInBlackList(int currentStation) {
+        for(int i=0; i < blackList.size(); i++){
             if(blackList.get(i).getNumberStation() == currentStation){
                 return true;
             }            
@@ -129,15 +141,15 @@ public class GreedyBestFirst implements Runnable{
     }
     
     public void search(){
-        addInBestWay(currentFather, currentStation);
+        addInBestWay(currentFather, currentStation, currentHeuristic);
         sumCostPath(currentStation);
         while(foundGoal!=true){
             findBestStation();
         }
         System.out.println("Total Cost: "+ totalCostPath);
         backTracking(currentStation);
-        String sb=bestTracking;
-        System.out.println("Best Way: [START]-["+sb+"END]");
+        //String sb=bestTracking;
+        System.out.println("Best Way: [END]-["+bestTracking+"START]");
     }
 
     @Override
