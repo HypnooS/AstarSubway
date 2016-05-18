@@ -68,9 +68,10 @@ public class GreedyBestFirst implements Runnable{
         }
         if(intermediateStation==bestWay.get(bestWay.size() -1 ).getNumberStation()){
             addInBlackList(intermediateStation);
-            currentStation=currentFather;
-            currentHeuristic=bestWay.get(bestWay.size()-2 ).getHeuristic();
-            this.currentFather = currentStation;
+            this.intermediateStation=currentFather;
+            currentHeuristic=bestWay.get(1).getHeuristic();
+            System.out.println("ddddddddddddd"+bestWay.get(1).getHeuristic());
+            this.intermediateFather = bestWay.get(bestWay.size()-2).getFatherStation();
         }
 
         this.currentStation = intermediateStation;
