@@ -6,6 +6,7 @@
 package astarsubway;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -39,14 +40,7 @@ public class MainProblem {
             {-1,-1,-1, 0},
             {-1,-1, 8,-1}
         };
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        ArrayList<Station> stations = new ArrayList<>();
-        int[][] matrixStation = createMatrixForProblemBackTracking();
-        int[][] matrixStations3 = {
+    int[][] matrixStations4 = {
             {-1,10,-1,-1,-1,-1},
             {12,-1, 6, 5,-1,-1},
             {-1,-1,-1, 0,-1,-1},
@@ -54,14 +48,78 @@ public class MainProblem {
             {-1,-1, 5,-1,-1,3},
             {-1,-1,-1,-1,4,-1}
         };
-        
-        createSubwayProblem2At6PM(stations);
-        
-        GreedyBestFirst search = new GreedyBestFirst(stations, matrixStation, 0, 22);
-        Thread searchThread = new Thread(search);
-        
-        searchThread.setPriority(5);
-        searchThread.start();
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        ArrayList<Station> stations = new ArrayList<>();
+        int choose;
+        System.out.println("Choose the scenario [1 or 2]");
+        Scanner scanner = new Scanner(System.in);
+        choose = scanner.nextInt();
+        String se;
+        int startStation=0;
+        int endStation=0;
+        int[][] matrixStation=null;
+        switch(choose){
+            case 1:
+                matrixStation = createMatrixForProblem1();
+                System.out.println("Choose the problem to resolve [1 to 4AM or 2 to 6PM]");
+                choose = scanner.nextInt();
+                switch(choose){
+                    case 1:
+                        createSubwayProblem1At4AM(stations);
+                        break;
+                    case 2:
+                        createSubwayProblem1At6PM(stations);
+                        break;
+                    default:
+                        System.err.println("Wrong Option!!!");
+                        break;
+                }
+                endStation= 22;
+                break;
+            case 2:
+                matrixStation = createMatrixForProblem2();
+                System.out.println("Choose the problem to resolve [1 to 4AM or 2 to 6PM]");
+                choose = scanner.nextInt();
+                switch(choose){
+                    case 1:
+                        createSubwayProblem2At4AM(stations);
+                        break;
+                    case 2:
+                        createSubwayProblem2At6PM(stations);
+                        break;
+                    default:
+                        System.err.println("Wrong Option!!!");
+                        break;
+                }
+                endStation=19;
+                break;
+            default:
+                System.err.println("Wrong Option!!");
+                break;
+        }
+        System.out.println("Choose the search type [BFS or ASTAR]");
+        Scanner scanner2 = new Scanner(System.in);
+        se = scanner2.nextLine();
+        if(se.equals("BFS")){
+            GreedyBestFirst search = new GreedyBestFirst(stations, matrixStation, startStation,endStation);
+            Thread searchThread = new Thread(search);      
+            searchThread.setPriority(5);
+            searchThread.start();
+        }else
+        if(se.equals("ASTAR")){
+            Astar search = new Astar(stations, matrixStation, startStation, endStation);
+            Thread searchThread = new Thread(search);      
+            searchThread.setPriority(5);
+            searchThread.start();
+        }
+        else{
+            System.err.println("No search type detect!!!");
+        }
+
     }
 
     public static Thread createBFSSearch(ArrayList<Station> stations, int[][] matrixStation, int startStation, int endStation) {;
