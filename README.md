@@ -1,7 +1,7 @@
 
 LEIAME
 -----------------------------------------------------------------------------------
-A classe MainProblem é classe aonde se controla as matrizes e os tipos de busca.
+A classe MainProblem é aonde se controla as matrizes e os tipos de buscas.
 Para realizar uma busca manualmente, é necessário:
 
 0) Retire o bloco Switch de interação.</br>
@@ -46,5 +46,5 @@ searchThread.setPriority(5);
 searchThread.start();
 
 ATENÇÃO:
-A classe BFS é uma classe antiga (@Deprecated), ela somente esta presente para demonstrar a evolução do código GreedyBestFirst.
+A classe BFS é uma classe depredicada (@Deprecated), ela somente esta presente para demonstrar a evolução do código GreedyBestFirst.
 
