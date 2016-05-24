@@ -13,42 +13,6 @@ import java.util.Scanner;
  * @author Caio Serrano
  */
 public class MainProblem {
-    
-    int[][] matrixStations1 = {
-            {-1, 6,-1,-1,-1,-1,-1},
-            { 6,-1, 4,-1,-1,-1,-1},
-            {-1, 4,-1, 7, 2,-1,-1},
-            {-1,-1, 7,-1,-1,-1,-1},
-            {-1,-1, 2,-1,-1, 0, 1},
-            {-1,-1,-1,-1, 0,-1,-1},
-            {-1,-1,-1,-1, 1,-1,-1}
-        };
-        
-    int[][] matrixStations2 = {
-            {-1,12,-1,-1,-1,-1,-1,-1},
-            {16,-1, 9, 7,-1,-1,-1,-1},
-            {-1,10,-1,-1,-1,-1,-1,-1},
-            {-1,10,-1,-1, 6,-1,-1,-1},
-            {-1,-1,-1, 8,-1, 4, 7,-1},
-            {-1,-1,-1,-1, 6,-1,-1, 0},
-            {-1,-1,-1,-1, 9,-1,-1,-1},
-            {-1,-1,-1,-1,-1, 0,-1,-1}
-        };
-    int[][] matrixStations3 = {
-            {-1,10,-1,-1},
-            {12,-1, 5, 6},
-            {-1,-1,-1, 0},
-            {-1,-1, 8,-1}
-        };
-    int[][] matrixStations4 = {
-            {-1,10,-1,-1,-1,-1},
-            {12,-1, 6, 5,-1,-1},
-            {-1,-1,-1, 0,-1,-1},
-            {-1,-1, 8,-1, 4,-1},
-            {-1,-1, 5,-1,-1,3},
-            {-1,-1,-1,-1,4,-1}
-        };
-    
     /**
      * @param args the command line arguments
      */
@@ -247,6 +211,7 @@ public class MainProblem {
         stations.add(new Station(13, 2, 2));
         stations.add(new Station(14, 2, 4));
         stations.add(new Station(15, 2, 2));
+       
         stations.add(new Station(16, 2, 2));
         stations.add(new Station(17, 2, 2));
         stations.add(new Station(18, 2, 2));

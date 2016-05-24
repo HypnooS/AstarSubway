@@ -115,9 +115,11 @@ public class GreedyBestFirst implements Runnable{
         }
         return false;
     }
+    
     public void sumCostPath(int currentStation){
         this.totalCostPath = totalCostPath + (stations.get(currentStation).getTime() + stations.get(currentStation).getTimeWait());
     }
+    
     public int backTracking(int lastClosedListNumber){
         
         for(int i=0;i<bestWay.size();i++){
@@ -131,7 +133,6 @@ public class GreedyBestFirst implements Runnable{
             return backTracking(lastClosedListNumber);
         }
         return 0;
-        
     }
     
     public void search(){
@@ -148,8 +149,11 @@ public class GreedyBestFirst implements Runnable{
 
     @Override
     public void run() {
+        
         long currentTimeMillis = System.currentTimeMillis();
+        int mb = 1024 * 1024;
         search();
+        
         currentTimeMillis = System.currentTimeMillis() - currentTimeMillis;
         System.out.println("Execute Time: "+ currentTimeMillis);
     }

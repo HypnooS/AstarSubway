@@ -149,9 +149,12 @@ public class Astar implements Runnable{
 
     @Override
     public void run() {
+        Runtime runtime = Runtime.getRuntime();
+        int mb = 1024 * 1024;
         long currentTimeMillis = System.currentTimeMillis();
         search();
         currentTimeMillis = System.currentTimeMillis() - currentTimeMillis;
-        System.out.println("Execute Time: "+ currentTimeMillis);
+        long memoryUsage = runtime.totalMemory() - runtime.freeMemory();
+        System.out.println("Execute Time: "+ currentTimeMillis+ " and Memory Usage: "+ memoryUsage);
     }
 }
