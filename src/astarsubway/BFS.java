@@ -11,6 +11,7 @@ import java.util.ArrayList;
  *
  * @author HypnoS
  */
+@Deprecated
 public class BFS implements Runnable{   
     public ArrayList<Station> stations;
     public ArrayList<List> subway;
